@@ -1,0 +1,49 @@
+<div class="todo-container">
+  <div class="todo-container-child">
+    <h1>My Todos</h1>
+    <div>
+      <mat-icon>published_with_changes</mat-icon>
+      <mat-icon (click)="openDialog()">add</mat-icon>
+    </div>
+  </div>
+  <div class="todo-list">
+    <table>
+      <tr class="table-underline">
+        <td class="todo-line">
+          <!-- <mat-checkbox class="me-3"></mat-checkbox> -->
+          <span class="currentTodo"></span>
+        </td>
+      </tr>
+      <tr class="table-underline">
+        <td class="todo-line">
+          <mat-checkbox class="me-3"></mat-checkbox>
+          <span></span>
+        </td>
+        <td class="trash-position">
+          <mat-icon>delete</mat-icon>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+
+  <!-- (click)="openDialog()" -->
+
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Input">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <textarea matInput placeholder="Textarea"></textarea>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-select placeholder="Select">
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
