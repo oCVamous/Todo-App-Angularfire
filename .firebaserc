@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ps-todo-list-app": {
+      "hosting": {
+        "test": [
+          "ps-todo-list-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ps-todo-list-app"
+  }
+}

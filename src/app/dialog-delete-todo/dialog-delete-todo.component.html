@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Delete Todo</h1>
+<div mat-dialog-content>
+    <p>Are your sure to complete this todo?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="deleteTodo(currentTodo)"
+        cdkFocusInitial>Ok</button>
+</div>
