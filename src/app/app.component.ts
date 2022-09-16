@@ -26,6 +26,7 @@ export class AppComponent {
 
       this.todos$.subscribe( (newTodos) => {
         console.log('Meine Todos sind:', newTodos);
+        this.todos = newTodos;
         
       });
   }
