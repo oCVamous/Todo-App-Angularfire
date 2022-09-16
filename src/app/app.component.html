@@ -8,10 +8,11 @@
   </div>
   <div class="todo-list">
     <table>
-      <tr class="table-underline" *ngFor="let todo of todosService.allTodos">
+      <tr class="table-underline" *ngFor="let todo of todos">
         <td class="todo-line">
-          <mat-checkbox class="me-3" (click)="this.todosService.finishTodo(todo)"></mat-checkbox>
-          <span style="padding-left: 10px;" class="currentTodo" (click)="openEditDialog(todo)">{{ todo }}</span>
+          <!-- (click)="this.todosService.finishTodo(todo)" -->
+          <mat-checkbox class="me-3"></mat-checkbox>
+          <span style="padding-left: 10px;" class="currentTodo" (click)="openEditDialog(todo)">{{ todo['todo'] }}</span>
         </td>
       </tr>
       <tr class="table-underline" *ngFor="let completeTodo of todosService.completeTodos">

@@ -16,6 +16,8 @@ import { Observable } from 'rxjs'
 export class AppComponent {
   title = '<Patricks Todo-List>';
   todos$: Observable<any>;
+  todos: Array<any>;
+  
   constructor(public dialog: MatDialog, 
     public todosService: TodosService,
     firestore: Firestore) {
