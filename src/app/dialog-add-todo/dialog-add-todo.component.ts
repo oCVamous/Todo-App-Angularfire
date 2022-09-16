@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Firestore, collectionData, collection, setDoc, doc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TodosService } from '../todos.service';
+
 
 @Component({
   selector: 'app-dialog-add-todo',
@@ -9,7 +11,12 @@ import { TodosService } from '../todos.service';
 })
 export class DialogAddTodoComponent implements OnInit {
   newTodo: any;
-  constructor(public todosService: TodosService, public dialogRef: MatDialogRef<DialogAddTodoComponent>) { }
+
+  constructor(public todosService: TodosService,
+     public dialogRef: MatDialogRef<DialogAddTodoComponent>,
+     private firestore: Firestore) {
+      const coll = collection(firestore, 'Patricks Todos');
+      }
 
   ngOnInit(): void {
   }
@@ -23,6 +30,9 @@ export class DialogAddTodoComponent implements OnInit {
   saveTodo() {
     this.todosService.saveTodo(this.newTodo);
     this.closeDialog();
+
+    const coll = collection(this.firestore, 'Patricks Todos');
+    return setDoc(doc(coll), {todo: this.newTodo});
   }
 
   

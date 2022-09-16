@@ -8,10 +8,10 @@
   </div>
   <div class="todo-list">
     <table>
-      <tr class="table-underline" *ngFor="let todo of todos">
+      <tr class="table-underline" *ngFor="let todo of todos$ |async">
         <td class="todo-line">
           <!-- (click)="this.todosService.finishTodo(todo)" -->
-          <mat-checkbox class="me-3"></mat-checkbox>
+          <mat-checkbox class="me-3" (click)="this.todosService.finishTodo(todo)"></mat-checkbox>
           <span style="padding-left: 10px;" class="currentTodo" (click)="openEditDialog(todo)">{{ todo['todo'] }}</span>
         </td>
       </tr>
