@@ -38,8 +38,9 @@ export class TodosService {
    * @param currentTodo 
    */
    finishTodo(currentTodo) {
-    let updatedTodo = [];
-    for (let i = 0; i < this.allTodos.length; i++) {
+    setTimeout( () => {
+      let updatedTodo = [];
+      for (let i = 0; i < this.allTodos.length; i++) {
       if (this.allTodos[i].todo != currentTodo['todo']) {
         const toDelTodo = doc(this.firestore, `Patricks Todos/${currentTodo['id']}`)
         deleteDoc(toDelTodo);
@@ -51,6 +52,8 @@ export class TodosService {
     //   this.allTodos.splice(this.allTodos.indexOf(currentTodo['todo']), 1);
     this.completeTodos.push(currentTodo['todo']); //current todo is stored in completeTodos
     this.saveToLocalStorage();
+    }, 1000);
+    
   }
 
   /**
