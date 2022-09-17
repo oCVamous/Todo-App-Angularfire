@@ -18,17 +18,11 @@ export class AppComponent {
   todos$: Observable<any>;
   todos: Array<any>;
   
-  constructor(public dialog: MatDialog, 
-    public todosService: TodosService,
-    firestore: Firestore) {
-      const coll = collection(firestore, 'Patricks Todos');
-      this.todos$ = collectionData(coll);
-
-      this.todos$.subscribe( (newTodos) => {
-        console.log('Meine Todos sind:', newTodos);
-        this.todos = newTodos;
-        
-      });
+  constructor(
+    public dialog: MatDialog, 
+    public todosService: TodosService) {
+      this.todos$ = this.todosService.todos$;
+      this.todos = this.todosService.todos;
   }
   /**
    * Opens the dialog window by opening the correct composed dialog(DialogAddTodoComponent)

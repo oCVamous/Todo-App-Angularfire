@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { collection, collectionData, CollectionReference, deleteDoc, doc, Firestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +9,20 @@ export class TodosService {
   newTodo!: string;
   allTodos: any[] = [];
   completeTodos = [];
-  firestore: any;
+  coll: CollectionReference;
+   todos$: Observable<any>;
+   todos: Array<any>;
+   
+  constructor(public firestore: Firestore) {
+    this.coll = collection(firestore, 'Patricks Todos');
+    this.todos$ = collectionData(this.coll, { idField: 'id'});
+ 
 
-  constructor() {
-    this.loadFromLocalStorage()
+      this.todos$.subscribe( (newTodos) => {
+        this.allTodos = newTodos;
+        this.todos = this.allTodos;
+      });
+    this.loadFromLocalStorage();
   }
 
   /**
@@ -25,9 +37,19 @@ export class TodosService {
    * Marks the todo as finished by a check
    * @param currentTodo 
    */
-  finishTodo(currentTodo: string) {
-    this.completeTodos.push(currentTodo); //current todo is stored in completeTodos
-    this.allTodos.splice(this.allTodos.indexOf(currentTodo), 1);
+   finishTodo(currentTodo) {
+    let updatedTodo = [];
+    for (let i = 0; i < this.allTodos.length; i++) {
+      if (this.allTodos[i].todo != currentTodo['todo']) {
+        const toDelTodo = doc(this.firestore, `Patricks Todos/${currentTodo['id']}`)
+        deleteDoc(toDelTodo);
+        updatedTodo.push(this.allTodos[i]);
+      }
+    }
+    this.allTodos = updatedTodo;
+
+    //   this.allTodos.splice(this.allTodos.indexOf(currentTodo['todo']), 1);
+    this.completeTodos.push(currentTodo['todo']); //current todo is stored in completeTodos
     this.saveToLocalStorage();
   }
 
@@ -86,23 +108,7 @@ export class TodosService {
     }
   }
 
-  pullFromFirestore() {
-  // this
-  // .firestore
-  // .collection('games')
-  // .doc(params['id'])
-  // .valueChanges()
-  // .subscribe((game: any) => {
-  //     console.log('Game update', game);
-  //     this.game.currentPlayer = game.currentPlayer;
-  //     this.game.playedCards = game.playedCards;
-  //     this.game.players = game.players;
-  //     this.game.player_images = game.player_images;
-  //     this.game.stack = game.stack;
-  //     this.game.pickCardAnimation = game.pickCardAnimation;
-  //     this.game.currentCard = game.currentCard;
-  // });
-  }
+
 }
   
 
