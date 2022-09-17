@@ -52,7 +52,7 @@ export class TodosService {
     //   this.allTodos.splice(this.allTodos.indexOf(currentTodo['todo']), 1);
     this.completeTodos.push(currentTodo['todo']); //current todo is stored in completeTodos
     this.saveToLocalStorage();
-    }, 1000);
+    }, 800);
     
   }
 

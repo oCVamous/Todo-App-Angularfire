@@ -15,7 +15,7 @@
           <span style="padding-left: 10px;" class="currentTodo" (click)="openEditDialog(todo)">{{ todo['todo'] }}</span>
         </td>
       </tr>
-      <tr class="table-underline" *ngFor="let completeTodo of todosService.completeTodos">
+      <tr class="table-underline2" *ngFor="let completeTodo of todosService.completeTodos">
         <td class="todo-line">
           <mat-checkbox class="me-3" disabled="" checked="true" ></mat-checkbox> 
           <span style="padding-left: 10px;">{{ completeTodo }}</span>
