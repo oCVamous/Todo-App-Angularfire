@@ -17,6 +17,8 @@ export class AppComponent {
   title = '<Patricks Todo-List>';
   todos$: Observable<any>;
   todos: Array<any>;
+allTodos: any;
+complete: any;
   
   constructor(
     public dialog: MatDialog, 
