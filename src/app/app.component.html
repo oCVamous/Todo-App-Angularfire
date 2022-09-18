@@ -1,29 +1,29 @@
-<div class="todo-container">
-  <div class="todo-container-child">
-    <h1>My Todos</h1>
-    <div>
-      <mat-icon (click)="this.todosService.sortTodos()">published_with_changes</mat-icon>
-      <mat-icon (click)="openDialog()" class="ms-2">add</mat-icon>
-    </div>
-  </div>
-  <div class="todo-list">
-    <table>
-      <tr class="table-underline" *ngFor="let todo of todos$ |async">
-        <td class="todo-line">
-          <!-- (click)="this.todosService.finishTodo(todo)" -->
-          <mat-checkbox class="me-3" (click)="this.todosService.finishTodo(todo)"></mat-checkbox>
-          <span style="padding-left: 10px;" class="currentTodo" (click)="openEditDialog(todo)">{{ todo['todo'] }}</span>
-        </td>
-      </tr>
-      <tr class="table-underline2" *ngFor="let completeTodo of todosService.completeTodos">
-        <td class="todo-line">
-          <mat-checkbox class="me-3" disabled="" checked="true" ></mat-checkbox> 
-          <span style="padding-left: 10px;">{{ completeTodo }}</span>
-        </td>
-        <td class="trash-position">
-          <mat-icon  (click)="openDeleteDialog(completeTodo)">delete</mat-icon>
-        </td>
-      </tr>
-    </table>
-  </div>
+<div class="todo-container">	
+  <div class="todo-container-child">	
+    <h1>My Todos</h1>	
+    <div>	
+      <mat-icon (click)="this.todosService.sortTodos()">published_with_changes</mat-icon>	
+      <mat-icon (click)="openDialog()" class="ms-2">add</mat-icon>	
+    </div>	
+  </div>	
+  <div class="todo-list">	
+    <table>	
+      <tr class="table-underline" *ngFor="let todo of todos$ |async">	
+        <td class="todo-line">	
+          <!-- (click)="this.todosService.finishTodo(todo)" -->	
+          <mat-checkbox class="me-3" (click)="this.todosService.finishTodo(todo)"></mat-checkbox>	
+          <span style="padding-left: 10px;" class="currentTodo" (click)="openEditDialog(todo)">{{ todo['todo'] }}</span>	
+        </td>	
+      </tr>	
+      <tr class="table-underline2" *ngFor="let completeTodo of todosService.completeTodos">	
+        <td class="todo-line">	
+          <mat-checkbox class="me-3" disabled="" checked="true" ></mat-checkbox> 	
+          <span style="padding-left: 10px;">{{ completeTodo.todo }}</span>	
+        </td>	
+        <td class="trash-position">	
+          <mat-icon  (click)="openDeleteDialog(completeTodo)">delete</mat-icon>	
+        </td>	
+      </tr>	
+    </table>	
+  </div>	
 </div>

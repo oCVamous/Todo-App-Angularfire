@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, collectionData, collection, setDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, setDoc, doc, serverTimestamp } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TodosService } from '../todos.service';
 
@@ -32,7 +32,7 @@ export class DialogAddTodoComponent implements OnInit {
     this.closeDialog();
 
     const coll = collection(this.firestore, 'Patricks Todos');
-    return setDoc(doc(coll), {todo: this.newTodo});
+    return setDoc(doc(coll), {todo: this.newTodo ,createdat : serverTimestamp() }); //add timestamp in doc
   }
 
   

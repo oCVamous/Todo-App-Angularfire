@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { collection, collectionData, CollectionReference, deleteDoc, doc, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-
+import orderBy from "lodash/orderBy";
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +50,7 @@ export class TodosService {
     this.allTodos = updatedTodo;
 
     //   this.allTodos.splice(this.allTodos.indexOf(currentTodo['todo']), 1);
-    this.completeTodos.push(currentTodo['todo']); //current todo is stored in completeTodos
+    this.completeTodos.push(currentTodo); //current todo is stored in completeTodos
     this.saveToLocalStorage();
     }, 800);
     
@@ -80,8 +80,11 @@ export class TodosService {
    * sortiert alle todos (auch allTodos und completeTodos) und aktualisiert den lokalen Speicher
    */
   sortTodos() {
-    this.allTodos.sort();
-    this.completeTodos.sort();
+
+      this.completeTodos  = orderBy(this.allTodos,["createdat"],["asc"]) ;
+     this.completeTodos = orderBy(this.completeTodos,["createdat"],["asc"]) ;
+     
+    
     this.saveToLocalStorage();
   }
 
