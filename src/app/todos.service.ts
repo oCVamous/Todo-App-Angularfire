@@ -15,11 +15,11 @@ export class TodosService {
    
   constructor(public firestore: Firestore) {
     this.coll = collection(firestore, 'Patricks Todos');
-    this.todos$ = collectionData(this.coll, { idField: 'id'});
+    this.todos$ = collectionData(this.coll, { idField: 'id'}); //We need the ID to be able to delete the correct element in our observable in the Firebase DB.
  
 
-      this.todos$.subscribe( (newTodos) => {
-        this.allTodos = newTodos;
+      this.todos$.subscribe( (newTodos) => { //subscribe provides and the latest data of the DB 
+        this.allTodos = newTodos; //we store this new data in the variable allTodos every time we make a change
         this.todos = this.allTodos;
       });
     this.loadFromLocalStorage();
@@ -35,10 +35,12 @@ export class TodosService {
   }
   /**
    * Marks the todo as finished by a check
+   * we finish a todo by iterating through all the todos 
+   * and if it doesn't match, we store it in the variable toDelTodo to delete it afterwards
    * @param currentTodo 
    */
-   finishTodo(currentTodo) {
-    setTimeout( () => {
+   finishTodo(currentTodo) { 
+    setTimeout( () => { //SetTimeout is needed to slow down the underlying function, so we have the click animation of the checkbox
       let updatedTodo = [];
       for (let i = 0; i < this.allTodos.length; i++) {
       if (this.allTodos[i].todo != currentTodo['todo']) {
@@ -47,7 +49,7 @@ export class TodosService {
         updatedTodo.push(this.allTodos[i]);
       }
     }
-    this.allTodos = updatedTodo;
+    this.allTodos = updatedTodo; //To be up to date, we need to update our allTodo
 
     //   this.allTodos.splice(this.allTodos.indexOf(currentTodo['todo']), 1);
     this.completeTodos.push(currentTodo); //current todo is stored in completeTodos
@@ -73,7 +75,7 @@ export class TodosService {
    * @param currentTodo 
    */
   deleteTodo(currentTodo: string) {
-    this.completeTodos.splice(this.completeTodos.indexOf(currentTodo), 1);
+    this.completeTodos.splice(this.completeTodos.indexOf(currentTodo), 1); //the currentTodo has an index, we use this to remove the correct element from allTodos
     this.saveToLocalStorage();
   }
   /**
@@ -81,8 +83,8 @@ export class TodosService {
    */
   sortTodos() {
 
-    this.todos  = orderBy(this.allTodos,["createdat"],["asc"]) ;
-     this.completeTodos = orderBy(this.completeTodos,["createdat"],["asc"]) ;
+    this.todos  = orderBy(this.allTodos,["createdat"],["asc"]) ; //The ASC command is used to sort the data returned in ascending order.
+    this.completeTodos = orderBy(this.completeTodos,["createdat"],["asc"]) ;
      
     
     this.saveToLocalStorage();
