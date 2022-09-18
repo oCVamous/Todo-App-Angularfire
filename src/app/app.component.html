@@ -8,7 +8,7 @@
   </div>	
   <div class="todo-list">	
     <table>	
-      <tr class="table-underline" *ngFor="let todo of todos$ |async">	
+      <tr class="table-underline" *ngFor="let todo of todosService.todos">	
         <td class="todo-line">	
           <!-- (click)="this.todosService.finishTodo(todo)" -->	
           <mat-checkbox class="me-3" (click)="this.todosService.finishTodo(todo)"></mat-checkbox>	

@@ -81,7 +81,7 @@ export class TodosService {
    */
   sortTodos() {
 
-      this.completeTodos  = orderBy(this.allTodos,["createdat"],["asc"]) ;
+    this.todos  = orderBy(this.allTodos,["createdat"],["asc"]) ;
      this.completeTodos = orderBy(this.completeTodos,["createdat"],["asc"]) ;
      
     
