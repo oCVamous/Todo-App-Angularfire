@@ -66,17 +66,18 @@ export class TodosService {
    * @param newTodo 
    * @param currentTodo 
    */
-  updateTodo(currentTodo: string) {
+  updateTodo(currentTodo: any) {
     // this.allTodos.splice(this.allTodos.indexOf(currentTodo), 1);
     // this.allTodos.push(newTodo);
     // this.saveToLocalStorage();
-    console.log(currentTodo['id']);
-    for(let i = 0; i< allTodos.length; i++) {
-      if(this.allTodos[i].todo != currentTodo['todo']) {
-        const toUpdateTodo = doc(this.firestore, `Patricks Todos/${currentTodo['id']})`setDoc(updateTodo, currentTodo)
-      })
+    console.log( currentTodo['id']);
+    for (let i = 0; i < this.allTodos.length; i++) {
+      if (this.allTodos[i].todo != currentTodo['todo']) {
+    
+        const toUpdateTodo =  doc(this.firestore, `Patricks Todos/${currentTodo['id']}`)
+        setDoc( toUpdateTodo, currentTodo);
+      }
     }
-
   }
   /**
    * deletes the todo from the array completeTodos and updates the local storage
