@@ -2,11 +2,11 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Edit Todo</mat-label>
-    <input matInput [(ngModel)]="newTodo">
+    <input matInput [(ngModel)]="currentTodo.todo">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="newTodo" (click)="this.todosService.updateTodo(newTodo, currentTodo)"
+  <button mat-button [mat-dialog-close]="newTodo" (click)="this.todosService.updateTodo(currentTodo)"
     cdkFocusInitial>Ok</button>
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { collection, collectionData, CollectionReference, deleteDoc, doc, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import orderBy from "lodash/orderBy";
+import { setDoc } from '@firebase/firestore';
 @Injectable({
   providedIn: 'root'
 })
@@ -65,10 +66,17 @@ export class TodosService {
    * @param newTodo 
    * @param currentTodo 
    */
-  updateTodo(newTodo: string, currentTodo: string) {
-    this.allTodos.splice(this.allTodos.indexOf(currentTodo), 1);
-    this.allTodos.push(newTodo);
-    this.saveToLocalStorage();
+  updateTodo(currentTodo: string) {
+    // this.allTodos.splice(this.allTodos.indexOf(currentTodo), 1);
+    // this.allTodos.push(newTodo);
+    // this.saveToLocalStorage();
+    console.log(currentTodo['id']);
+    for(let i = 0; i< allTodos.length; i++) {
+      if(this.allTodos[i].todo != currentTodo['todo']) {
+        const toUpdateTodo = doc(this.firestore, `Patricks Todos/${currentTodo['id']})`setDoc(updateTodo, currentTodo)
+      })
+    }
+
   }
   /**
    * deletes the todo from the array completeTodos and updates the local storage
